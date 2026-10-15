@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Productivity Assistant | Karabo</title>
+<style>
+body{font-family:Arial;max-width:900px;margin:0 auto;padding:20px;background:#f5f7fb}
+header{background:#24292f;color:white;padding:25px;border-radius:12px;text-align:center}
+.card{background:white;padding:20px;border-radius:12px;margin:15px 0;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+button{background:#2da44e;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:bold}
+textarea,input,select{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ddd}
+.output{background:#f6f8fa;padding:15px;border-radius:8px;margin-top:10px;border-left:4px solid #2da44e;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<header>
+<h1>🤖 AI-Powered Workplace Productivity Assistant</h1>
+<p>By Karabo Keohitlhetse | ASA 23 JHB Week 23</p>
+</header>
+
+<div class="card">
+<h2>📧 1. Email Generation</h2>
+<select id="emailType"><option>Professional Email</option><option>Follow-up</option><option>Apology</option></select>
+<input id="emailTo" placeholder="To: e.g., Manager">
+<textarea id="emailContext" placeholder="What should the email be about?"></textarea>
+<button onclick="generateEmail()">Generate Email</button>
+<div id="emailOutput" class="output" style="display:none"></div>
+</div>
+
+<div class="card">
+<h2>📝 2. Meeting Summarization</h2>
+<textarea id="meetingText" placeholder="Paste meeting notes..."></textarea>
+<button onclick="summarizeMeeting()">Summarize</button>
+<div id="meetingOutput" class="output" style="display:none"></div>
+</div>
+
+<div class="card">
+<h2>✅ 3. Task Planning</h2>
+<input id="taskGoal" placeholder="Your goal for today...">
+<button onclick="planTasks()">Create Plan</button>
+<div id="taskOutput" class="output" style="display:none"></div>
+</div>
+
+<script>
+function generateEmail(){
+const to=document.getElementById('emailTo').value;
+const ctx=document.getElementById('emailContext').value;
+const out="Subject: Regarding "+ctx.substring(0,30)+"\n\nDear "+(to||'Team')+",\n\n"+ctx+"\n\nKind regards,\nKarabo";
+document.getElementById('emailOutput').style.display='block';
+document.getElementById('emailOutput').innerText=out;
+}
+function summarizeMeeting(){
+const t=document.getElementById('meetingText').value;
+document.getElementById('meetingOutput').style.display='block';
+document.getElementById('meetingOutput').innerText="SUMMARY:\n- "+t.substring(0,150)+"...\n\nAction: Follow up & share minutes";
+}
+function planTasks(){
+const g=document.getElementById('taskGoal').value;
+document.getElementById('taskOutput').style.display='block';
+document.getElementById('taskOutput').innerText="GOAL: "+g+"\n\nMorning: Deep work\nAfternoon: Meetings\nEnd: Review";
+}
+</script>
+</body>
+</html>
